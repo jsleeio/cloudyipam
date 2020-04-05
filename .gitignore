@@ -13,9 +13,9 @@ terraform.d
 crash.log
 
 # binaries
-cloudyipam
-terraform-provider-cloudyipam
+/cloudyipam
+/terraform-provider-cloudyipam
 
 # linux binaries
-cloudyipam.linux
-terraform-provider-cloudyipam.linux
+/cloudyipam.linux
+/terraform-provider-cloudyipam.linux
