@@ -40,25 +40,25 @@ tool available in it. This can be used to see the zones that Terraform created:
 
     $ docker exec -it testing_cloudyipam-cli_1 cloudyipam zone list
     Using config file: /root/.cloudyipam.yaml
-    NAME       ZONE ID                              CIDR BLOCK    SUBNET PREFIXLEN
-    us-west-2a feacde2e-5576-4e43-9dd3-f74cffe79052 10.0.0.0/10   11
-    us-west-2b cd4062b1-8c7d-471d-a5d2-aa7d57de4a3a 10.64.0.0/10  11
-    us-west-2c 0ba18fb9-2ef4-4c19-9126-32a1e4baf2ac 10.128.0.0/10 11
-    us-west-2d b1eef029-916f-4108-bd21-04ad82533e63 10.192.0.0/10 11
+    NAME          ZONE ID                                 CIDR BLOCK       SUBNET PREFIXLEN
+    us-west-2a    3df34b76-1575-4007-98b3-6be9b9ab7128    10.0.0.0/10      11
+    us-west-2b    3b43631d-6fa0-4b8f-860c-c7a2f65a1b07    10.64.0.0/10     11
+    us-west-2c    9d8ab9d7-e894-42bf-9a95-6f76ebf7aa64    10.128.0.0/10    11
+    us-west-2d    1b21581a-5da6-414e-b210-1f1c779e2901    10.192.0.0/10    11
 
 And the subnets:
 
     $ docker exec -it testing_cloudyipam-cli_1 cloudyipam subnet list
     Using config file: /root/.cloudyipam.yaml
-    USAGE            SUBNET ID                            ZONE ID                              CIDR BLOCK    AVAILABLE
-    us-west-2c (db)  cd64c8ca-9c7c-43e3-8da7-0aef9c53039f 0ba18fb9-2ef4-4c19-9126-32a1e4baf2ac 10.128.0.0/11 false
-    us-west-2c (app) abcccbee-01e3-4256-bded-d9abc3491b1d 0ba18fb9-2ef4-4c19-9126-32a1e4baf2ac 10.160.0.0/11 false
-    us-west-2d (db)  4d939e2b-8fdf-48e8-b263-0944361c0642 b1eef029-916f-4108-bd21-04ad82533e63 10.192.0.0/11 false
-    us-west-2d (app) caf19003-61c6-4a18-b181-49eeed54e5a9 b1eef029-916f-4108-bd21-04ad82533e63 10.224.0.0/11 false
-    us-west-2b (db)  4e79b1f2-5771-48e5-9ccf-065ab97d6fc1 cd4062b1-8c7d-471d-a5d2-aa7d57de4a3a 10.64.0.0/11  false
-    us-west-2b (app) 9a51ba6f-06d6-4398-ab5e-b53f4d506626 cd4062b1-8c7d-471d-a5d2-aa7d57de4a3a 10.96.0.0/11  false
-    us-west-2a (db)  1e6b9dce-decd-4ac0-8638-a5d5f6470551 feacde2e-5576-4e43-9dd3-f74cffe79052 10.0.0.0/11   false
-    us-west-2a (app) c03f1eb1-b21b-4ef1-9e5e-71249e0600c3 feacde2e-5576-4e43-9dd3-f74cffe79052 10.32.0.0/11  false
+    USAGE               SUBNET ID                               ZONE ID                                 CIDR BLOCK       AVAILABLE
+    us-west-2d (db)     ff8e537a-5c70-44fd-a49f-41beec75e95f    1b21581a-5da6-414e-b210-1f1c779e2901    10.192.0.0/11    false
+    us-west-2d (app)    85d114e5-7bf3-474d-8c23-2307358ab3c8    1b21581a-5da6-414e-b210-1f1c779e2901    10.224.0.0/11    false
+    us-west-2b (db)     49073e7d-2c46-4763-8c9b-765105ea6e8d    3b43631d-6fa0-4b8f-860c-c7a2f65a1b07    10.64.0.0/11     false
+    us-west-2b (app)    57c1930e-4b6c-4fc7-8b51-eabc6d8afd70    3b43631d-6fa0-4b8f-860c-c7a2f65a1b07    10.96.0.0/11     false
+    us-west-2a (db)     7fd0f2df-e994-48f6-8a85-2472af6a0866    3df34b76-1575-4007-98b3-6be9b9ab7128    10.0.0.0/11      false
+    us-west-2a (app)    c317fb4b-ace2-44c3-a3f3-a59070db095f    3df34b76-1575-4007-98b3-6be9b9ab7128    10.32.0.0/11     false
+    us-west-2c (db)     c06a0f3d-cadc-416c-8930-cae152736d0c    9d8ab9d7-e894-42bf-9a95-6f76ebf7aa64    10.128.0.0/11    false
+    us-west-2c (app)    a121b194-79cb-4217-9ecc-bdf55c93d787    9d8ab9d7-e894-42bf-9a95-6f76ebf7aa64    10.160.0.0/11    false
 
 To tear it all down:
 

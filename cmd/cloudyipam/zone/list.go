@@ -48,10 +48,11 @@ var cmdZoneList = &cobra.Command{
 			return
 		}
 		w := new(tabwriter.Writer)
-		w.Init(os.Stdout, 0, 8, 2, '\t', 0)
-		fmt.Fprintf(w, "%s\t%s\t%s\t%v\n", "NAME", "ZONE ID", "CIDR BLOCK", "SUBNET PREFIXLEN")
+		w.Init(os.Stdout, 0, 3, 4, ' ', 0)
+		// \v\n is not an error, go doc text/tabwriter
+		fmt.Fprintf(w, "%s\v%s\v%s\v%v\v\n", "NAME", "ZONE ID", "CIDR BLOCK", "SUBNET PREFIXLEN")
 		for _, zone := range zones {
-			fmt.Fprintf(w, "%s\t%s\t%s\t%v\n", zone.Name, zone.Id, zone.Range, zone.PrefixLen)
+			fmt.Fprintf(w, "%s\v%s\v%s\v%v\v\n", zone.Name, zone.Id, zone.Range, zone.PrefixLen)
 		}
 		w.Flush()
 	},

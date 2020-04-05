@@ -50,10 +50,11 @@ var cmdSubnetList = &cobra.Command{
 			return
 		}
 		w := new(tabwriter.Writer)
-		w.Init(os.Stdout, 0, 8, 2, '\t', 0)
-		fmt.Fprintf(w, "%s\t%s\t%s\t%s\t%v\n", "USAGE", "SUBNET ID", "ZONE ID", "CIDR BLOCK", "AVAILABLE")
+		w.Init(os.Stdout, 0, 3, 4, ' ', 0)
+		// \v\n is not an error, go doc text/tabwriter
+		fmt.Fprintf(w, "%s\v%s\v%s\v%s\v%v\v\n", "USAGE", "SUBNET ID", "ZONE ID", "CIDR BLOCK", "AVAILABLE")
 		for _, subnet := range subnets {
-			fmt.Fprintf(w, "%s\t%s\t%s\t%s\t%v\n", subnet.Usage, subnet.Id, subnet.Zone, subnet.Range, subnet.Available)
+			fmt.Fprintf(w, "%s\v%s\v%s\v%s\v%v\v\n", subnet.Usage, subnet.Id, subnet.Zone, subnet.Range, subnet.Available)
 		}
 		w.Flush()
 	},
