@@ -75,8 +75,18 @@ func NewCloudyIPAM(dsn string) (*CloudyIPAM, error) {
 	return obj, err
 }
 
+// Ping verifies connectivity with the CloudyIPAM database. A convenient
+// proxy for database/sql.DB.Ping()
 func (ipam CloudyIPAM) Ping() error {
 	return ipam.conn.Ping()
+}
+
+// DB returns the CloudyIPAM client's database connection. Use with care.
+// Avoid using, generally. CloudyIPAM client credentials should provide no
+// access to do anything useful in the database anyway --- only to invoke the
+// specific API endpoints like create_zone.
+func (ipam CloudyIPAM) DB() *sql.DB {
+	return ipam.conn
 }
 
 // CreateZone initializes a new IPAM zone and returns its unique identifier

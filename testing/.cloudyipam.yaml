@@ -1,6 +1,0 @@
-db-host: db
-db-port: 5432
-db-user: testuser
-db-password: pg
-db-name: cloudyipam
-db-tls: false

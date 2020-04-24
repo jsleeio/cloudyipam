@@ -1,0 +1,54 @@
+builds:
+- env:
+    - CGO_ENABLED=0
+  goos:
+    - linux
+    - darwin
+  goarch:
+    - amd64
+    - arm64
+checksum:
+  name_template: '{{ .ProjectName }}_checksums.txt'
+changelog:
+  sort: asc
+  filters:
+    exclude:
+      - '^docs:'
+      - '^test:'
+      - Merge pull request
+      - Merge branch
+dockers:
+  - 
+    dockerfile: Dockerfile
+    binaries:
+      - cloudyipam
+    image_templates:
+      - "jsleeio/{{ .ProjectName }}:{{ .Tag }}"
+      - "jsleeio/{{ .ProjectName }}:v{{ .Major }}"
+      - "jsleeio/{{ .ProjectName }}:v{{ .Major }}.{{ .Minor }}"
+      - "jsleeio/{{ .ProjectName }}:latest"
+    build_flag_templates:
+      - "--pull"
+      - "--label=org.opencontainers.image.created={{.Date}}"
+      - "--label=org.opencontainers.image.name={{.ProjectName}}"
+      - "--label=org.opencontainers.image.revision={{.FullCommit}}"
+      - "--label=org.opencontainers.image.version={{.Version}}"
+      - "--build-arg=PROJECT_NAME={{.ProjectName}}"
+  -
+    dockerfile: Dockerfile.postgres
+    binaries:
+      - cloudyipam
+    extra_files:
+      - 'postgres-init.sh'
+    image_templates:
+      - "jsleeio/{{ .ProjectName }}:{{ .Tag }}-postgres-alpine"
+      - "jsleeio/{{ .ProjectName }}:v{{ .Major }}-postgres-alpine"
+      - "jsleeio/{{ .ProjectName }}:v{{ .Major }}.{{ .Minor }}-postgres-alpine"
+      - "jsleeio/{{ .ProjectName }}:postgres-alpine"
+    build_flag_templates:
+      - "--pull"
+      - "--label=org.opencontainers.image.created={{.Date}}"
+      - "--label=org.opencontainers.image.name={{.ProjectName}}"
+      - "--label=org.opencontainers.image.revision={{.FullCommit}}"
+      - "--label=org.opencontainers.image.version={{.Version}}"
+      - "--build-arg=PROJECT_NAME={{.ProjectName}}"

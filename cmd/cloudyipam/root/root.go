@@ -19,7 +19,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 */
-package main
+package root
 
 import (
 	"fmt"
@@ -29,6 +29,7 @@ import (
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 
+	"github.com/jsleeio/cloudyipam/cmd/cloudyipam/initialize"
 	"github.com/jsleeio/cloudyipam/cmd/cloudyipam/ping"
 	"github.com/jsleeio/cloudyipam/cmd/cloudyipam/subnet"
 	"github.com/jsleeio/cloudyipam/cmd/cloudyipam/zone"
@@ -63,9 +64,13 @@ func init() {
 	rootCmd.PersistentFlags().StringVar(&user, "db-user", "cloudyipam", "database username")
 	rootCmd.PersistentFlags().StringVar(&password, "db-password", "", "database password")
 	rootCmd.PersistentFlags().StringVar(&name, "db-name", "cloudyipam", "database name")
-	rootCmd.PersistentFlags().StringVar(&port, "db-port", "5432", "database port")
-	rootCmd.PersistentFlags().StringVar(&host, "db-host", "localhost", "database hostname")
+	rootCmd.PersistentFlags().StringVar(&port, "db-port", "", "database port")
+	rootCmd.PersistentFlags().StringVar(&host, "db-host", "", "database hostname")
 	rootCmd.PersistentFlags().BoolVar(&tls, "db-tls", false, "Enable TLS when connecting to database")
+	rootCmd.AddCommand(initialize.Cmd)
+	rootCmd.AddCommand(ping.Cmd)
+	rootCmd.AddCommand(zone.Cmd)
+	rootCmd.AddCommand(subnet.Cmd)
 	viper.BindPFlag("db-user", rootCmd.PersistentFlags().Lookup("db-user"))
 	viper.BindPFlag("db-password", rootCmd.PersistentFlags().Lookup("db-password"))
 	viper.BindPFlag("db-name", rootCmd.PersistentFlags().Lookup("db-name"))
@@ -98,10 +103,4 @@ func initConfig() {
 	if err := viper.ReadInConfig(); err == nil {
 		fmt.Println("Using config file:", viper.ConfigFileUsed())
 	}
-}
-
-func addCommands() {
-	rootCmd.AddCommand(ping.Cmd)
-	rootCmd.AddCommand(zone.Cmd)
-	rootCmd.AddCommand(subnet.Cmd)
 }

@@ -21,7 +21,10 @@ THE SOFTWARE.
 */
 package main
 
+//go:generate go run github.com/jsleeio/text2go -input=database/cloudyipam.sql -output=cmd/cloudyipam/sqltext/sqltext.go -package=sqltext
+
+import "github.com/jsleeio/cloudyipam/cmd/cloudyipam/root"
+
 func main() {
-	addCommands()
-	Execute()
+	root.Execute()
 }

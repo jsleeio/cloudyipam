@@ -15,7 +15,14 @@ crash.log
 # binaries
 /cloudyipam
 /terraform-provider-cloudyipam
+/text2go
 
 # linux binaries
 /cloudyipam.linux
 /terraform-provider-cloudyipam.linux
+
+# generated .go files
+cmd/cloudyipam/sqltext/
+
+# goreleaser build droppings
+dist/
