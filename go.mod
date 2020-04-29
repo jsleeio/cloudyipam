@@ -1,6 +1,6 @@
 module github.com/jsleeio/cloudyipam
 
-go 1.13
+go 1.14
 
 require (
 	github.com/lib/pq v1.3.0
