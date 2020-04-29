@@ -3,6 +3,7 @@ module github.com/jsleeio/cloudyipam
 go 1.14
 
 require (
+	github.com/jsleeio/text2go v1.0.0 // indirect
 	github.com/lib/pq v1.3.0
 	github.com/mitchellh/go-homedir v1.1.0
 	github.com/spf13/afero v1.2.2 // indirect
