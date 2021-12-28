@@ -1,3 +1,9 @@
+# archival note
+
+Archiving this repo because AWS now provide IPAM as a service and I don't see
+a need for this anymore, and because maintaining Terraform providers is painful.
+It was a fun experiment, though.
+
 # cloudyipam
 
 This repository contains an extremely barebones IP address management (IPAM)
